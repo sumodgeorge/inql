@@ -7,8 +7,7 @@ import traceback
 
 from burp import IExtensionStateListener, ITab
 
-from com.formdev.flatlaf import FlatLightLaf
-from javax.swing import JTabbedPane, UIManager
+from javax.swing import JTabbedPane
 
 from gqlspection import log as gql_log
 
@@ -94,11 +93,7 @@ class BurpExtenderPython(IExtensionStateListener):
             callbacks.registerScannerCheck(BurpScannerCheck())
 
 
-            app.burp_laf = UIManager.getLookAndFeel()
-            app.flat_laf = FlatLightLaf()
             try:
-                UIManager.setLookAndFeel(app.flat_laf)
-
                 # Register Suite Tab(s)
                 self._scanner_tab  = ScannerTab()
                 self._timer_tab    = TimerTab()
@@ -115,10 +110,7 @@ class BurpExtenderPython(IExtensionStateListener):
                 )
             except Exception as e:
                 log.error("Exception: %s", str(e))
-                log.debug("Exception: %s", str(e))
                 raise
-            finally:
-                UIManager.setLookAndFeel(app.burp_laf)
 
             callbacks.addSuiteTab(app.main_tab)
 
