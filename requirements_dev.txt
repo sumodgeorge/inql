@@ -4,6 +4,6 @@
 isort>=4,<5
 
 # Pylint is the best linter for Python 2.7, AFAIK
-pylint>=1,<2
+pylint>=2.6.1,<2
 
 pre-commit
